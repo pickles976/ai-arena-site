@@ -53,6 +53,10 @@ var callback = function(){
     document.getElementById('team1-deaths').innerHTML = team1["deaths"]
     document.getElementById('team1-metal').innerHTML = team1["metal"]
     document.getElementById('team1-energy').innerHTML = team1["energy"]
+
+    const ships = getShipsInfo()
+    document.getElementById('team0-ships').innerHTML = ships['team0']
+    document.getElementById('team1-ships').innerHTML = ships['team1']
 }
 
 setUICallbacks(callback)
