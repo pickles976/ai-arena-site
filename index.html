@@ -8,7 +8,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="styles.css">
 
-        <script type="module" src="app.js" async defer></script>
+        <link rel="icon" type="image/x-icon" href="/static/logo_med.png">
+
+        <script src="/ace-builds/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/ace-builds/src-min-noconflict/ext-language-tools.js"></script>
+
+        <script type="module" src="game.js" async defer></script>
+        <script type="module" src="editor.js" async defer></script>
 
     </head>
     <body class="body">
@@ -16,10 +22,7 @@
         <div class="container">
             <div class="leftPane">
                 <div class="codeContainer">
-                    <div id="editor">function foo(items) {
-                        var x = "All this is syntax highlighted";
-                        return x;
-                    }</div>
+                    <div id="editor">// Your code here</div>
                 </div>
             </div>
 
@@ -32,6 +35,13 @@
             <div class="leftPane">
                 <button id="pause">Pause</button>
                 <button id="step">Step</button>
+
+                <select class="btn btn-secondary dropdown-toggle" id="select-script">
+                    <option selected>Ship Update</option>
+                    <option>Ship Start</option>
+                    <option>Base Update</option>
+                    <option>Base Start</option>
+                </select>
             </div>
 
             <div class="rightPane">
@@ -70,12 +80,5 @@
                 <text id="team1-ships">Teams</text>
             </div>
         </div>
-
-        <script src="/ace-builds/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
-        <script>
-            var editor = ace.edit("editor");
-            editor.setTheme("ace/theme/monokai");
-            editor.session.setMode("ace/mode/javascript");
-        </script>
     </body>
 </html>
