@@ -60,3 +60,6 @@ editor.setTheme("ace/theme/tomorrow_night_eighties");
 editor.session.setValue(sessions[oldSessionValue])
 
 setEditorOptions(editor)
+
+// USE THIS TO PICK A COLOR PALETTE FOR THE GAME
+// console.log(editor.renderer.theme.cssText)

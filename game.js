@@ -1,5 +1,5 @@
 import { BaseStart, BaseUpdate, ShipStart, ShipUpdate } from './aiControls.js'
-import { setCanvas, testPackage, runGame, togglePause, stepFrame, getGameInfo, setUICallbacks, getGameState, getShipsInfo, setShipStartCode, setShipUpdateCode, setBaseStartCode, setBaseUpdateCode} from './node_modules/ai-arena/dist/index.js'
+import { stopGame, setCanvas, testPackage, runGame, togglePause, stepFrame, getGameInfo, setUICallbacks, getGameState, getShipsInfo, setShipStartCode, setShipUpdateCode, setBaseStartCode, setBaseUpdateCode} from './node_modules/ai-arena/dist/index.js'
 import { getCodeFromEditor } from './editor.js'
 
 let startTime = performance.now()
@@ -7,7 +7,9 @@ let startTime = performance.now()
 // INITIALIZATION
 console.log(testPackage())
 
-setCanvas(document.getElementById("game-canvas"))
+const canvas = document.getElementById("game-canvas")
+setCanvas(canvas)
+canvas.getContext('2d').fillRect(0,0,2000,2000)
 
 setBaseStartCode(0,BaseStart)
 setBaseUpdateCode(0,BaseUpdate)
@@ -44,6 +46,11 @@ let run = event => {
     runGame()
 }
 document.getElementById("run").addEventListener("click", run)
+
+let stop = event => {
+    stopGame()
+}
+document.getElementById("stop").addEventListener("click", stop)
 
 var callback = function(){
     const teamInfo = getGameInfo()

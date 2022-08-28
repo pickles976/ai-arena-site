@@ -29,6 +29,7 @@
 .title {
     display: inline-block;
     margin: auto;
+    margin-left: 16px;
     position: absolute;
     top: 50%;
     -ms-transform: translateY(-50%);
