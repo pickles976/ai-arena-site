@@ -1,15 +1,22 @@
 import { BaseStart, BaseUpdate, ShipStart, ShipUpdate } from './aiControls.js'
-import {setCanvas, testPackage, runGame, togglePause, stepFrame, getGameInfo, setUICallbacks, getGameState, getShipsInfo, setShipStartCode, setShipUpdateCode, setBaseStartCode, setBaseUpdateCode} from './node_modules/ai-arena/dist/index.js'
+import { setRealTime, setCanvas, testPackage, runGame, togglePause, stepFrame, getGameInfo, setUICallbacks, getGameState, getShipsInfo, setShipStartCode, setShipUpdateCode, setBaseStartCode, setBaseUpdateCode} from './node_modules/ai-arena/dist/index.js'
 import { getCodeFromEditor } from './editor.js'
 
+let startTime = performance.now()
 
 // INITIALIZATION
 console.log(testPackage())
+
 setCanvas(document.getElementById("game-canvas"))
-setBaseStartCode(BaseStart)
-setBaseUpdateCode(BaseUpdate)
-setShipStartCode(ShipStart)
-setShipUpdateCode(ShipUpdate)
+
+setBaseStartCode(0,BaseStart)
+setBaseUpdateCode(0,BaseUpdate)
+setShipStartCode(0,ShipStart)
+setShipUpdateCode(0,ShipUpdate)
+setBaseStartCode(1,BaseStart)
+setBaseUpdateCode(1,BaseUpdate)
+setShipStartCode(1,ShipStart)
+setShipUpdateCode(1,ShipUpdate)
 
 let pause = event => {
     console.log("Paused")
@@ -25,16 +32,15 @@ document.getElementById("step").addEventListener("click", step)
 
 let compile = event => {
     var code = getCodeFromEditor()
-    console.log(code["Base Update"])
-    console.log(BaseUpdate)
-    setBaseStartCode(code["Base Start"])
-    setBaseUpdateCode(code["Base Update"])
-    setShipStartCode(code["Ship Start"])
-    setShipUpdateCode(code["Ship Update"])
+    setBaseStartCode(0,code["Base Start"])
+    setBaseUpdateCode(0,code["Base Update"])
+    setShipStartCode(0,code["Ship Start"])
+    setShipUpdateCode(0,code["Ship Update"])
 };
 document.getElementById("compile").addEventListener("click", compile)
 
 let run = event => {
+    startTime = performance.now()
     runGame()
 }
 document.getElementById("run").addEventListener("click", run)
@@ -57,6 +63,8 @@ var callback = function(){
     const ships = getShipsInfo()
     document.getElementById('team0-ships').innerHTML = ships['team0']
     document.getElementById('team1-ships').innerHTML = ships['team1']
+
+    document.getElementById('timer').innerHTML = 'Timesteps: ' + ((performance.now() - startTime) * 60 / 1000).toFixed(0)
 }
 
 setUICallbacks(callback)
