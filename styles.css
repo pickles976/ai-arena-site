@@ -1,4 +1,50 @@
+.header {
+    position: relative;
+    display: block;
+    white-space: nowrap;
+    height: 10%;
+    width: 100%;
+}
+
+.bg-gunmetal {
+    background-color: #253237;
+    color: #fffafb;
+}
+
+.bg-metalgun {
+    background-color: #182125!important;
+    color: #fffafb;
+}
+
+.bg-gutter {
+    background-color: #272727!important;
+    color: #fffafb;
+}
+
+.bg-grime {
+    background-color: #2D2D2D!important;
+    color: #fffafb;
+}
+
+.title {
+    display: inline-block;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.logo {
+    margin: 8px;
+    height: 6vh;
+    border: 8;
+    top: 50%
+}
+
 .body {
+    background-color: #454545;
+    color: white;
     margin: 0;
     border: 0;
 }
@@ -7,7 +53,7 @@
 #editor { 
     position: relative;
     min-height: 100px;
-    height: 96vh;
+    height: 88vh;
     width: 100%;
     top: 0;
     right: 0;
