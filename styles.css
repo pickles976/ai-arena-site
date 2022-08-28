@@ -113,6 +113,14 @@
     display: flex;
 }
 
+.main-container {
+    width: 100%;
+    height: 90%;
+    border: 0;
+    margin: 0;
+    display: flex;
+}
+
 .buttonPanel {
     width: 100%;
     border: 0;
@@ -139,9 +147,47 @@
 }
 
 .score-panel {
+    margin: 8px;
+    height: 13.5vh;
+}
+
+.ship-panel {
     margin: auto;
+    width: 100%;
+    height: 56.5vh;
+    background-color: #cc99cc;
 }
 
 .game-controls {
     margin: auto;
+}
+
+.ship-info {
+    margin: auto;
+    width: 100%;
+}
+
+.memory-container {
+    position: relative;
+    display: flex;
+    margin: 0;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+}
+
+.memory-select {
+    margin: auto;
+    width: 33%;
+    /* height: 20vh; */
+    background-color: #adadad;
+    display: flex;
+}
+
+.memory-inspect {
+    position: relative;
+    margin: auto;
+    width: 66%;
+    /* height: 20vh; */
+    background-color: #acacac;
 }

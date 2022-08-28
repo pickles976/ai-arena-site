@@ -28,7 +28,7 @@
             </nav>
         </header>
 
-        <div class="container">
+        <div class="main-container">
 
             <!-- left -->
             <div class="leftPane">
@@ -52,11 +52,15 @@
                     <button id="step">Step</button>
                 </div>
 
-                <!-- Ships info-->
-                <div class="container">
-                    <div class="rightPane">
-                        <text id="team0-ships"></text>
-                        <text id="team1-ships"></text>
+                <!-- Memory -->
+                <div class="memory-container">
+                    <div class="memory-select">
+                        <!-- Memory selection -->
+                        <text id="team0-ships" class="ship-info"></text>
+                    </div>
+                    <div class="memory-inspect">
+                        <!-- Memory insepction -->
+                        <text id="team1-ships" class="ship-info"></text>
                     </div>
                 </div>
             </div>
@@ -94,6 +98,9 @@
                         </table>
                     </div>
                     <text id="timer"></text>
+                </div>
+                <div class="ship-panel">
+                    <!-- Test Panel -->
                 </div>
             </div>
         </div>
