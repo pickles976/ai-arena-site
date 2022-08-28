@@ -1,20 +1,5 @@
 import { BaseStart, BaseUpdate, ShipStart, ShipUpdate } from './aiControls.js'
 
-var sessions = {
-    'Base Start' : BaseStart,
-    'Base Update' : BaseUpdate,
-    'Ship Start' : ShipStart,
-    'Ship Update' : ShipUpdate,
-}
-
-var oldSessionValue = "Ship Update"
-
-var langTools = ace.require("ace/ext/language_tools");
-var editor = ace.edit("editor");
-editor.setTheme("ace/theme/tomorrow_night_eighties");
-editor.session.setValue(sessions[oldSessionValue])
-setEditorOptions(editor)
-
 function setEditorOptions(editor){
     editor.session.setMode("ace/mode/javascript");
     editor.setOptions({
@@ -57,3 +42,21 @@ export var getCodeFromEditor = function(){
 
     return sessionCode
 }
+
+
+
+
+var sessions = {
+    'Base Start' : BaseStart,
+    'Base Update' : BaseUpdate,
+    'Ship Start' : ShipStart,
+    'Ship Update' : ShipUpdate,
+}
+
+var oldSessionValue = "Ship Update"
+
+var langTools = ace.require("ace/ext/language_tools");
+var editor = ace.edit("editor");
+editor.setTheme("ace/theme/tomorrow_night_eighties");
+editor.session.setValue(sessions[oldSessionValue])
+setEditorOptions(editor)

@@ -18,70 +18,84 @@
 
     </head>
     <body class="body">
-
+        
         <div class="container">
+
+            <!-- left -->
             <div class="leftPane">
                 <div class="codeContainer">
                     <div id="editor">// Your code here</div>
                 </div>
             </div>
 
-            <div class="rightPane">
-                <div class="container">
+            <!-- middle -->
+            <div class="middlePane">
+
+                <!-- Canvas Container-->
+                <div class="canvasContainer">
                     <canvas id="game-canvas" width="640" height="480" class="myCanvas"></canvas>
-                    <div class="infoPanels">
-                        <div id="teams-info">
-                            <table>
-                                <tr>
-                                    <th>Values</th>
-                                    <th>Team 0</th>
-                                    <th>Team 1</th>
-                                </tr>
-                                <tr>
-                                    <td>Kills</td>
-                                    <td id='team0-kills'>0</td>
-                                    <td id='team1-kills'>0</td>
-                                </tr>
-                                <tr>
-                                    <td>Deaths</td>
-                                    <td id='team0-deaths'>0</td>
-                                    <td id='team1-deaths'>0</td>
-                                </tr>
-                                <tr>
-                                    <td>Metal</td>
-                                    <td id='team0-metal'>0</td>
-                                    <td id='team1-metal'>0</td>
-                                </tr>
-                                <tr>
-                                    <td>Energy</td>
-                                    <td id='team0-energy'>0</td>
-                                    <td id='team1-energy'>0</td>
-                                </tr>
-                            </table>
-                        </div>
-                        <text id="timer"></text>
+                </div>
+
+                <!-- Ships info-->
+                <div class="container">
+                    <div class="rightPane">
+                        <text id="team0-ships"></text>
+                        <text id="team1-ships"></text>
                     </div>
+                </div>
+            </div>
+
+            <!-- right -->
+            <div class="rightPane">
+                <div class="score-panel">
+                    <div id="teams-info">
+                        <table>
+                            <tr>
+                                <th>Values</th>
+                                <th>Team 0</th>
+                                <th>Team 1</th>
+                            </tr>
+                            <tr>
+                                <td>Kills</td>
+                                <td id='team0-kills'>0</td>
+                                <td id='team1-kills'>0</td>
+                            </tr>
+                            <tr>
+                                <td>Deaths</td>
+                                <td id='team0-deaths'>0</td>
+                                <td id='team1-deaths'>0</td>
+                            </tr>
+                            <tr>
+                                <td>Metal</td>
+                                <td id='team0-metal'>0</td>
+                                <td id='team1-metal'>0</td>
+                            </tr>
+                            <tr>
+                                <td>Energy</td>
+                                <td id='team0-energy'>0</td>
+                                <td id='team1-energy'>0</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <text id="timer"></text>
                 </div>
             </div>
         </div>
 
         <div class="container">
             <div class="leftPane">
-                <button id="run">Run</button>
-                <button id="compile">Compile</button>
-                <button id="pause">Pause</button>
-                <button id="step">Step</button>
-                <select class="btn btn-secondary dropdown-toggle" id="select-script">
-                    <option selected>Ship Update</option>
-                    <option>Ship Start</option>
-                    <option>Base Update</option>
-                    <option>Base Start</option>
-                </select>
-            </div>
-
-            <div class="rightPane">
-                <text id="team0-ships"></text>
-                <text id="team1-ships"></text>
+                <div class="container">
+                    <button id="run">Run</button>
+                    <button id="compile">Compile</button>
+                    <button id="pause">Pause</button>
+                    <button id="step">Step</button>
+                    <select class="btn btn-secondary dropdown-toggle" id="select-script">
+                        <option selected>Ship Update</option>
+                        <option>Ship Start</option>
+                        <option>Base Update</option>
+                        <option>Base Start</option>
+                    </select>
+                </div>
             </div>
         </div>
     </body>
