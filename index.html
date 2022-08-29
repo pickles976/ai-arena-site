@@ -72,7 +72,8 @@
                         <!-- Memory selection -->
                         <!-- <text id="team0-ships" class="ship-info"></text> -->
                         <nav>
-                            <ul>
+                            <ul id="memory-list">
+                                <!-- PUT THE OBJECTS IN HERE!!! -->
                                 <li>Link 1</li>
                                 <li>Link 2</li>
                                 <li>Link 3</li>
@@ -98,31 +99,31 @@
                     <div class="teams-info" id="teams-info">
                             <div class="container row">
                                 <div class="col-left">
-                                    <div>Values</div>
-                                    <div>Kills</div>
-                                    <div>Deaths</div>
-                                    <div>Metal</div>
-                                    <div>Energy</div>
+                                    <div class="cell">Values</div>
+                                    <div class="cell">Kills</div>
+                                    <div class="cell">Deaths</div>
+                                    <div class="cell">Metal</div>
+                                    <div class="cell">Energy</div>
                                 </div>
                                 <div class="col-middle">
-                                    <div>Team 0</div>
-                                    <div id='team0-kills'>0</div>
-                                    <div id='team0-deaths'>0</div>
-                                    <div id='team0-metal'>0</div>
-                                    <div id='team0-energy'>0</div>
+                                    <div class="cell">Team 0</div>
+                                    <div class="cell" id='team0-kills'>0</div>
+                                    <div class="cell" id='team0-deaths'>0</div>
+                                    <div class="cell" id='team0-metal'>0</div>
+                                    <div class="cell" id='team0-energy'>0</div>
                                 </div>
                                 <div class="col-right">
-                                    <div>Team 1</div>
-                                    <div id='team1-kills'>0</div>
-                                    <div id='team1-deaths'>0</div>
-                                    <div id='team1-metal'>0</div>
-                                    <div id='team1-energy'>0</div>
+                                    <div class="cell">Team 1</div>
+                                    <div class="cell" id='team1-kills'>0</div>
+                                    <div class="cell" id='team1-deaths'>0</div>
+                                    <div class="cell" id='team1-metal'>0</div>
+                                    <div class="cell" id='team1-energy'>0</div>
                                 </div>
                             </div>
                     </div>
                 </div>
                 <div class="timer-panel">
-                    <text id="timer"></text>
+                    <text id="timer" style="padding-top:0.5vh;"></text>
                 </div>
                 <div class="ship-panel">
                     <!-- Test Panel -->

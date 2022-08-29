@@ -74,6 +74,10 @@
     width: 60%!important;
 }
 
+body .ace_scrollbar-v {
+    overflow-y: auto;
+}
+
 .code-controls {
     position: relative;
     height: 4vh;
@@ -230,6 +234,10 @@ nav ul{overflow:hidden; overflow-y:scroll; direction:rtl;margin: auto; padding: 
 
 .row {
     flex-direction: row;
+}
+
+.cell {
+    border:1px solid white;
 }
 
 .col-left {
