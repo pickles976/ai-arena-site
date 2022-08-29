@@ -1,8 +1,14 @@
+:root {
+    --game-height: 720px;
+    --game-width: 1080px;
+    --ratio: calc(var(--game-width) / var(--game-height))
+}
+
 .header {
     position: relative;
     display: block;
     white-space: nowrap;
-    height: 10%;
+    height: 6vh;
     width: 100%;
 }
 
@@ -29,16 +35,18 @@
 .title {
     display: inline-block;
     margin: auto;
-    margin-left: 16px;
+    margin-left: 1%;
     position: absolute;
     top: 50%;
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
+    font-size: 3vmin;
 }
 
 .logo {
-    margin: 8px;
-    height: 6vh;
+    /* margin: 8px; */
+    padding: 8px;
+    height: 4vh;
     border: 8;
     top: 50%
 }
@@ -54,7 +62,7 @@
 #editor { 
     position: relative;
     min-height: 100px;
-    height: 88vh;
+    height: 90vh;
     width: 100%;
     top: 0;
     right: 0;
@@ -121,13 +129,6 @@
     display: flex;
 }
 
-.buttonPanel {
-    width: 100%;
-    border: 0;
-    margin: 0;
-    display: flex;
-}
-
 .canvasContainer {
     width: 100%;
     height: 100%;
@@ -146,20 +147,24 @@
     float: right;
 }
 
-.score-panel {
-    margin: 8px;
-    height: 13.5vh;
-}
-
 .ship-panel {
     margin: auto;
     width: 100%;
-    height: 56.5vh;
+    height: 74.5vh;
     background-color: #cc99cc;
 }
 
 .game-controls {
+    position: relative;
+    width: 100%;
+    height: 2.5vh;
     margin: auto;
+    top: 100%;
+    justify-content: center;
+    -ms-transform: translateY(-100%);
+    transform: translateY(-100%);
+    display: flex;
+    margin-bottom: -2.5vh;
 }
 
 .ship-info {
@@ -168,17 +173,20 @@
 }
 
 .memory-container {
-    position: relative;
+    position: absolute;
     display: flex;
     margin: 0;
-    height: 100%;
-    top: 0;
-    bottom: 0;
+    width: inherit;
+    /* top: calc(94vh - (100vh / 3)); */
+    top: inherit;
+    /* bottom: 4vh; */
+    align-items: stretch;
 }
 
 .memory-select {
     margin: auto;
     width: 33%;
+    height: 100%;
     /* height: 20vh; */
     background-color: #adadad;
     display: flex;
@@ -188,6 +196,63 @@
     position: relative;
     margin: auto;
     width: 66%;
+    height: 100%;
     /* height: 20vh; */
     background-color: #acacac;
+}
+
+.timer-panel {
+    height: 3vh;
+    justify-content: center;
+    align-content: center;
+    display: flex;
+}
+
+/* FLEXBOX GRID */
+
+.score-panel {
+    height: 12.5vh;
+    font-size: 16px;
+    font-size: 1.7vmin;
+}
+
+.teams-info {
+    padding: 8px;
+}
+
+.row {
+    flex-direction: row;
+}
+
+.col-left {
+    width: 33%;
+    height: 100%;
+    border-collapse: collapse;
+    border: 0;
+    margin: 0;
+    float: left;
+    padding: 2px;
+    white-space: nowrap;
+}
+
+.col-middle {
+    width: 33%;
+    height: 100%;
+    border-collapse: collapse;
+    border: 0;
+    margin: 0;
+    float: left;
+    padding: 2px;
+    white-space: nowrap;
+}
+
+.col-right {
+    width: 33%;
+    height: 100%;
+    border-collapse: collapse;
+    border: 0;
+    margin: 0;
+    float: left;
+    padding: 2px;
+    white-space: nowrap;
 }

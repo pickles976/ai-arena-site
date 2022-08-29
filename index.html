@@ -68,35 +68,33 @@
             <!-- right -->
             <div class="rightPane">
                 <div class="score-panel">
-                    <div id="teams-info">
-                        <table>
-                            <tr>
-                                <th>Values</th>
-                                <th>Team 0</th>
-                                <th>Team 1</th>
-                            </tr>
-                            <tr>
-                                <td>Kills</td>
-                                <td id='team0-kills'>0</td>
-                                <td id='team1-kills'>0</td>
-                            </tr>
-                            <tr>
-                                <td>Deaths</td>
-                                <td id='team0-deaths'>0</td>
-                                <td id='team1-deaths'>0</td>
-                            </tr>
-                            <tr>
-                                <td>Metal</td>
-                                <td id='team0-metal'>0</td>
-                                <td id='team1-metal'>0</td>
-                            </tr>
-                            <tr>
-                                <td>Energy</td>
-                                <td id='team0-energy'>0</td>
-                                <td id='team1-energy'>0</td>
-                            </tr>
-                        </table>
+                    <div class="teams-info" id="teams-info">
+                            <div class="container row">
+                                <div class="col-left">
+                                    <div>Values</div>
+                                    <div>Kills</div>
+                                    <div>Deaths</div>
+                                    <div>Metal</div>
+                                    <div>Energy</div>
+                                </div>
+                                <div class="col-middle">
+                                    <div>Team 0</div>
+                                    <div id='team0-kills'>0</div>
+                                    <div id='team0-deaths'>0</div>
+                                    <div id='team0-metal'>0</div>
+                                    <div id='team0-energy'>0</div>
+                                </div>
+                                <div class="col-right">
+                                    <div>Team 1</div>
+                                    <div id='team1-kills'>0</div>
+                                    <div id='team1-deaths'>0</div>
+                                    <div id='team1-metal'>0</div>
+                                    <div id='team1-energy'>0</div>
+                                </div>
+                            </div>
                     </div>
+                </div>
+                <div class="timer-panel">
                     <text id="timer"></text>
                 </div>
                 <div class="ship-panel">
