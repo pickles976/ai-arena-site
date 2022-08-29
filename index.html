@@ -32,8 +32,22 @@
 
             <!-- left -->
             <div class="leftPane">
-                <div class="codeContainer">
-                    <div id="editor">// Your code here</div>
+                <div style="margin: auto; width: 100%;">
+                    <div class="code-controls">
+                        <div class="container">
+                            <select class="btn btn-secondary dropdown-toggle" id="select-script">
+                                <option selected>Ship Update</option>
+                                <option>Ship Start</option>
+                                <option>Base Update</option>
+                                <option>Base Start</option>
+                            </select>
+                            <button id="compile">Compile</button>
+                        </div>
+                    </div>
+
+                    <div class="codeContainer">
+                        <div id="editor">// Your code here</div>
+                    </div>
                 </div>
             </div>
 
@@ -56,7 +70,20 @@
                 <div class="memory-container">
                     <div class="memory-select">
                         <!-- Memory selection -->
-                        <text id="team0-ships" class="ship-info"></text>
+                        <!-- <text id="team0-ships" class="ship-info"></text> -->
+                        <nav>
+                            <ul>
+                                <li>Link 1</li>
+                                <li>Link 2</li>
+                                <li>Link 3</li>
+                                <li>Link 4</li>
+                                <li>Link 5</li>
+                                <li>Link 6</li> 
+                                <li>Link 7</li> 
+                                <li>Link 8</li>
+                                <li>Link 9</li>
+                            </ul>
+                        </nav>
                     </div>
                     <div class="memory-inspect">
                         <!-- Memory insepction -->
@@ -99,20 +126,6 @@
                 </div>
                 <div class="ship-panel">
                     <!-- Test Panel -->
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="leftPane">
-                <div class="container">
-                    <select class="btn btn-secondary dropdown-toggle" id="select-script">
-                        <option selected>Ship Update</option>
-                        <option>Ship Start</option>
-                        <option>Base Update</option>
-                        <option>Base Start</option>
-                    </select>
-                    <button id="compile">Compile</button>
                 </div>
             </div>
         </div>

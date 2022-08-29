@@ -68,7 +68,7 @@ var callback = function(){
     document.getElementById('team1-energy').innerHTML = team1["energy"]
 
     const ships = getShipsInfo()
-    document.getElementById('team0-ships').innerHTML = ships['team0']
+    // document.getElementById('team0-ships').innerHTML = ships['team0']
     document.getElementById('team1-ships').innerHTML = ships['team1']
 
     document.getElementById('timer').innerHTML = 'Timesteps: ' + ((performance.now() - startTime) * 60 / 1000).toFixed(0)
