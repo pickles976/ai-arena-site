@@ -30,9 +30,12 @@
 
         <div class="main-container">
 
-            <!-- left -->
+            <!-- LEFT PANE -->
             <div class="leftPane">
+                <!-- stacking -->
                 <div style="margin: auto; width: 100%;">
+
+                    <!-- CODE CONTROLS -->
                     <div class="code-controls">
                         <div class="container">
                             <select class="btn btn-secondary dropdown-toggle" id="select-script">
@@ -45,16 +48,17 @@
                         </div>
                     </div>
 
+                    <!-- EDITOR WINDOW-->
                     <div class="codeContainer">
                         <div id="editor">// Your code here</div>
                     </div>
                 </div>
             </div>
 
-            <!-- middle -->
+            <!-- MIDDLE PANE -->
             <div class="middlePane">
 
-                <!-- Canvas Container-->
+                <!-- CANVAS CONTAINER-->
                 <div class="canvasContainer">
                     <canvas id="game-canvas" width="640" height="480" class="myCanvas"></canvas>
                 </div>
@@ -66,35 +70,32 @@
                     <button id="step">Step</button>
                 </div>
 
-                <!-- Memory -->
+                <!-- MEMORY CONTAINER-->
                 <div class="memory-container">
+
+                    <!-- MEMORY SELECTION -->
                     <div class="memory-select">
-                        <!-- Memory selection -->
-                        <!-- <text id="team0-ships" class="ship-info"></text> -->
                         <nav>
                             <ul id="memory-list">
-                                <!-- PUT THE OBJECTS IN HERE!!! -->
+                                <!-- TODO: PUT THE OBJECTS IN HERE!!! -->
                                 <li>Link 1</li>
                                 <li>Link 2</li>
                                 <li>Link 3</li>
-                                <li>Link 4</li>
-                                <li>Link 5</li>
-                                <li>Link 6</li> 
-                                <li>Link 7</li> 
-                                <li>Link 8</li>
-                                <li>Link 9</li>
                             </ul>
                         </nav>
                     </div>
+
+                    <!-- MEMORY INSPECTION-->
                     <div class="memory-inspect">
-                        <!-- Memory insepction -->
                         <text id="team1-ships" class="ship-info"></text>
                     </div>
                 </div>
             </div>
 
-            <!-- right -->
+            <!-- RIGHT PANE -->
             <div class="rightPane">
+
+                <!-- CURRENT SCORE INFO -->
                 <div class="score-panel">
                     <div class="teams-info" id="teams-info">
                             <div class="container row">
@@ -122,11 +123,19 @@
                             </div>
                     </div>
                 </div>
+
+                <!-- TIMER -->
                 <div class="timer-panel">
                     <text id="timer" style="padding-top:0.5vh;"></text>
                 </div>
+
+                <!-- SHIP INFO -->
                 <div class="ship-panel">
-                    <!-- Test Panel -->
+                    <!-- TODO: PUT INFO ABOUT SHIPS HERE -->
+                    <nav>
+                        <ul id="ship-list">
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
