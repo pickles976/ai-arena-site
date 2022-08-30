@@ -87,15 +87,18 @@ const traverseObject = function(element,obj,tabs){
     for(const field in obj){
         if (typeof obj[field] !== 'function'){
 
-            // if (typeof obj[field] == 'object'){
-            //     traverseObject(element,obj[field],tabs+1)
-            // }
-
-            const child = document.createElement('mem-field')
-            // child.field = '\t'.repeat(tabs) + field
-            child.field = field
-            child.value = obj[field]
-            element.appendChild(child)
+            if (typeof obj[field] == 'object'){
+                const child = document.createElement('mem-field')
+                child.field = '\u2003'.repeat(tabs) + field
+                child.value = ''
+                element.appendChild(child)
+                traverseObject(element,obj[field],tabs+1)
+            }else{
+                const child = document.createElement('mem-field')
+                child.field = '\u2003'.repeat(tabs) + field
+                child.value = obj[field]
+                element.appendChild(child)
+            }
         }
     }
 
@@ -122,7 +125,7 @@ const addMemoryIndex = function(element,obj){
     element.appendChild(child)
 }
 
-const memoryList = document.getElementById('memory-list')
+const memoryList = document.getElementById('memory-select')
 
 // draw the actual items in the list
 const drawMemoryTags = function(element,memDump){
