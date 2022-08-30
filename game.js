@@ -71,8 +71,6 @@ var callback = function(){
     document.getElementById('team1-energy').innerHTML = team1["energy"]
 
     const ships = getShipsInfo()
-    // document.getElementById('team0-ships').innerHTML = ships['team0']
-    document.getElementById('team1-ships').innerHTML = ships['team1']
 
     document.getElementById('timer').innerHTML = 'Timesteps: ' + ((performance.now() - startTime) * 60 / 1000).toFixed(0)
 
@@ -83,17 +81,50 @@ var callback = function(){
 
 setUICallbacks(callback)
 
-const addMemoryIndex = function(element,text){
+
+const traverseObject = function(element,obj,tabs){
+
+    for(const field in obj){
+        if (typeof obj[field] !== 'function'){
+
+            // if (typeof obj[field] == 'object'){
+            //     traverseObject(element,obj[field],tabs+1)
+            // }
+
+            const child = document.createElement('mem-field')
+            // child.field = '\t'.repeat(tabs) + field
+            child.field = field
+            child.value = obj[field]
+            element.appendChild(child)
+        }
+    }
+
+}
+
+const memoryIndexClick = function(obj){
+
+    const element = document.getElementById('memory-inspector')
+    removeChildren(element)
+
+    let tabs = 0
+    traverseObject(element,obj,tabs)
+
+}
+
+// add single item component to list
+const addMemoryIndex = function(element,obj){
     const child = document.createElement('mem-index')
-    child.objectName = text
+    child.objectType = obj.type
+    child.objectId = obj.uuid
 
     // add callback to open memory inspector here
-    child.addEventListener("click",()=>{alert("SOOQ MADIQ")})
+    child.addEventListener("click",()=>{memoryIndexClick(obj)})
     element.appendChild(child)
 }
 
 const memoryList = document.getElementById('memory-list')
 
+// draw the actual items in the list
 const drawMemoryTags = function(element,memDump){
 
     removeChildren(element)
@@ -101,7 +132,7 @@ const drawMemoryTags = function(element,memDump){
     for(let i = 0; i < memDump.length; i++){
         const obj = memDump[i]
         if (obj != undefined)
-            addMemoryIndex(element,obj.type)
+            addMemoryIndex(element,obj)
     }
 }
 

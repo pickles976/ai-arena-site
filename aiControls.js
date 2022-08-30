@@ -1,4 +1,4 @@
-export const BaseStart = 'console.log("Base Start!")'
+export const BaseStart = 'let t = "test"'
 
 
 export const BaseUpdate = 
