@@ -8,8 +8,7 @@ Slim.element(
     <div style='
     cursor: pointer; 
     margin: auto; 
-    margin-top: 0.5%;
-    margin-bottom: 0.5%;
+    margin-top: 0.25%;
     width: 95%;
     height: 10%;
     display: flex;
@@ -17,7 +16,9 @@ Slim.element(
         <a style='
         margin: auto;
         margin-left: 5%;'
-        id='mem-index-text'>{{this.objectType}} : {{this.objectId}}</a>
+        id='mem-index-text'>
+          {{this.objectType}} : {{this.objectId}}
+        </a>
     </div>
   `
 )
@@ -25,8 +26,21 @@ Slim.element(
 Slim.element(
   'mem-field',
   `
-    <div>
-      <text class='mem-field-text'>{{this.field}} : {{this.value}}</text>
+    <div style='
+      font-size: 2.0vmin;
+      margin: auto; 
+      margin-top: 0.25%;
+      margin-bottom: 0.25%;
+      width: 95%;
+      height: 10%;
+      display: flex;
+      background-color: var(--secondary)
+    '>
+      <text style='
+      margin: auto;
+      margin-left: 1%;'>
+        {{this.field}} : {{this.value}}
+      </text>
     </div>
   `
 )

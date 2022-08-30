@@ -23,6 +23,8 @@ setBaseUpdateCode(1,BaseUpdate)
 setShipStartCode(1,ShipStart)
 setShipUpdateCode(1,ShipUpdate)
 
+let uuid = undefined
+
 let pause = event => {
     console.log("Paused")
     console.log(getGameState())
@@ -77,7 +79,14 @@ var callback = function(){
 
     document.getElementById('timer').innerHTML = 'Timesteps: ' + ((performance.now() - startTime) * 60 / 1000).toFixed(0)
 
-    drawMemoryTags(memoryList,getGameState())
+    const gameState = getGameState()
+
+    drawMemoryTags(memoryList,gameState)
+
+    const currentObj = (gameState.filter((obj) => obj && obj.uuid === uuid) || [undefined])[0]
+
+    if(currentObj)
+        populateMemoryPanel(currentObj)
 
     console.log(performance.now() - start)
 }
@@ -107,9 +116,7 @@ const traverseObject = function(element,obj,tabs){
 
 }
 
-// index click callbacks
-const memoryIndexClick = function(obj){
-
+const populateMemoryPanel = function(obj){
     const element = document.getElementById('memory-inspector')
     removeChildren(element) // clear all the old fields
 
@@ -117,7 +124,12 @@ const memoryIndexClick = function(obj){
     // draw a circle
     drawCircle(obj.transform.position)
     traverseObject(element,obj,tabs)
+}
 
+// index click callbacks
+const memoryIndexClick = function(obj){
+    uuid = obj.uuid
+    populateMemoryPanel(obj)
 }
 
 // Each index in the memory list has a callback

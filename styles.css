@@ -145,10 +145,11 @@ body .ace_scrollbar-v {
 }
 
 .canvasContainer {
-    width: 100%;
+    width: 98%;
     /* height: 100%; */
     border: 0;
     margin: 0;
+    margin-left: 1%;
     display: flex;
 }
 
@@ -207,18 +208,13 @@ nav ul{overflow:hidden; overflow-y:auto; direction:rtl;margin: auto; padding: 0;
     overflow-y: auto;
 }
 
-.mem-index-object {
-    cursor: pointer;
-    background-color: var(--secondary);
-}
-
 .memory-inspect {
     position: relative;
     margin: auto;
     width: 66%;
     height: 100%;
     max-height: 100%;
-    background-color: #acacac;
+    background-color: var(--primary);
     text-align: left;
     flex-shrink: 0;
     overflow-y: auto;
