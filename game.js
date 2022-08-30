@@ -53,6 +53,9 @@ let stop = event => {
 document.getElementById("stop").addEventListener("click", stop)
 
 var callback = function(){
+
+    const start = performance.now()
+
     const teamInfo = getGameInfo()
     const team0 = teamInfo['team 0']
     const team1 = teamInfo['team 1']
@@ -72,6 +75,40 @@ var callback = function(){
     document.getElementById('team1-ships').innerHTML = ships['team1']
 
     document.getElementById('timer').innerHTML = 'Timesteps: ' + ((performance.now() - startTime) * 60 / 1000).toFixed(0)
+
+    drawMemoryTags(memoryList,getGameState())
+
+    console.log(performance.now() - start)
 }
 
 setUICallbacks(callback)
+
+const addMemoryIndex = function(element,text){
+    const child = document.createElement('mem-index')
+    child.objectName = text
+
+    // add callback to open memory inspector here
+    child.addEventListener("click",()=>{alert("SOOQ MADIQ")})
+    element.appendChild(child)
+}
+
+const memoryList = document.getElementById('memory-list')
+
+const drawMemoryTags = function(element,memDump){
+
+    removeChildren(element)
+
+    for(let i = 0; i < memDump.length; i++){
+        const obj = memDump[i]
+        if (obj != undefined)
+            addMemoryIndex(element,obj.type)
+    }
+}
+
+const removeChildren = function(element){
+    var child = element.lastElementChild; 
+    while (child) {
+        element.removeChild(child);
+        child = element.lastElementChild;
+    }
+}
