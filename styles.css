@@ -1,7 +1,9 @@
 :root {
     --game-height: 720px;
     --game-width: 1080px;
-    --ratio: calc(var(--game-width) / var(--game-height))
+    --ratio: calc(var(--game-width) / var(--game-height));
+    --primary: #2D2D2D;
+    --secondary: #272727;
 }
 
 .header {
@@ -23,12 +25,12 @@
 }
 
 .bg-gutter {
-    background-color: #272727!important;
+    background-color: var(--secondary)!important;
     color: #fffafb;
 }
 
 .bg-grime {
-    background-color: #2D2D2D!important;
+    background-color: var(--primary)!important;
     color: #fffafb;
 }
 
@@ -199,11 +201,15 @@ nav ul{overflow:hidden; overflow-y:auto; direction:rtl;margin: auto; padding: 0;
     margin: auto;
     width: 33%;
     height: 100%;
-    background-color: #adadad;
+    background-color: var(--primary);
     text-align: left;
     flex-shrink: 0;
     overflow-y: auto;
-    padding-left: 1%;
+}
+
+.mem-index-object {
+    cursor: pointer;
+    background-color: var(--secondary);
 }
 
 .memory-inspect {
@@ -216,7 +222,6 @@ nav ul{overflow:hidden; overflow-y:auto; direction:rtl;margin: auto; padding: 0;
     text-align: left;
     flex-shrink: 0;
     overflow-y: auto;
-    padding-left: 1%;
 }
 
 .timer-panel {

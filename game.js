@@ -7,9 +7,12 @@ let startTime = performance.now()
 // INITIALIZATION
 console.log(testPackage())
 
+const memoryList = document.getElementById('memory-select')
+
 const canvas = document.getElementById("game-canvas")
 setCanvas(canvas)
-canvas.getContext('2d').fillRect(0,0,2000,2000)
+const ctx = canvas.getContext('2d')
+ctx.fillRect(0,0,2000,2000)
 
 setBaseStartCode(0,BaseStart)
 setBaseUpdateCode(0,BaseUpdate)
@@ -104,17 +107,20 @@ const traverseObject = function(element,obj,tabs){
 
 }
 
+// index click callbacks
 const memoryIndexClick = function(obj){
 
     const element = document.getElementById('memory-inspector')
-    removeChildren(element)
+    removeChildren(element) // clear all the old fields
 
     let tabs = 0
+    // draw a circle
+    drawCircle(obj.transform.position)
     traverseObject(element,obj,tabs)
 
 }
 
-// add single item component to list
+// Each index in the memory list has a callback
 const addMemoryIndex = function(element,obj){
     const child = document.createElement('mem-index')
     child.objectType = obj.type
@@ -125,9 +131,7 @@ const addMemoryIndex = function(element,obj){
     element.appendChild(child)
 }
 
-const memoryList = document.getElementById('memory-select')
-
-// draw the actual items in the list
+// Draw the list of memory objects that are clickable
 const drawMemoryTags = function(element,memDump){
 
     removeChildren(element)
@@ -145,4 +149,16 @@ const removeChildren = function(element){
         element.removeChild(child);
         child = element.lastElementChild;
     }
+}
+
+const drawCircle = function(pos){
+
+    ctx.restore()
+
+    ctx.fillStyle = "#FFFF00"
+    ctx.globalAlpha = 0.3
+    ctx.beginPath()
+    ctx.arc(pos.x,pos.y,25,0,Math.PI*2)
+    ctx.fill()
+    ctx.globalAlpha = 1.0
 }

@@ -1,11 +1,24 @@
 import { Slim } from './node_modules/slim-js/dist/index.nonminified.js';
 
+let background = "#182125"
+
 Slim.element(
   'mem-index',
   `
-  <div>
-    <text id='mem-index-text'>{{this.objectType}} : {{this.objectId}}</text>
-  </div>
+    <div style='
+    cursor: pointer; 
+    margin: auto; 
+    margin-top: 0.5%;
+    margin-bottom: 0.5%;
+    width: 95%;
+    height: 10%;
+    display: flex;
+    background-color: var(--secondary)'>
+        <a style='
+        margin: auto;
+        margin-left: 5%;'
+        id='mem-index-text'>{{this.objectType}} : {{this.objectId}}</a>
+    </div>
   `
 )
 
