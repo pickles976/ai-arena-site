@@ -1,6 +1,11 @@
 import { BaseStart, BaseUpdate, ShipStart, ShipUpdate } from './aiControls.js'
-import { stopGame, setCanvas, testPackage, runGame, togglePause, stepFrame, getGameInfo, setUICallbacks, getGameState, getShipsInfo, setShipStartCode, setShipUpdateCode, setBaseStartCode, setBaseUpdateCode} from './node_modules/ai-arena/dist/index.js'
+import { setRealTime, stopGame, setCanvas, testPackage, runGame, togglePause, stepFrame, getGameInfo, setUICallbacks, getGameState, getShipsInfo, setShipStartCode, setShipUpdateCode, setBaseStartCode, setBaseUpdateCode} from './node_modules/ai-arena/dist/index.js'
 import { getCodeFromEditor } from './editor.js'
+
+
+let PAUSED = false;
+let REALTIME = true;
+let RUNNING = false;
 
 let startTime = performance.now()
 
@@ -18,22 +23,20 @@ setBaseStartCode(0,BaseStart)
 setBaseUpdateCode(0,BaseUpdate)
 setShipStartCode(0,ShipStart)
 setShipUpdateCode(0,ShipUpdate)
-setBaseStartCode(1,BaseStart)
-setBaseUpdateCode(1,BaseUpdate)
-setShipStartCode(1,ShipStart)
-setShipUpdateCode(1,ShipUpdate)
 
 let uuid = undefined
 
 let pause = event => {
-    console.log("Paused")
-    console.log(getGameState())
     togglePause()
+    PAUSED = !PAUSED
+    document.getElementById("pause").innerHTML = PAUSED ? "Play" : "Pause"
 };
 document.getElementById("pause").addEventListener("click", pause)
 
 let step = event => {
     stepFrame()
+    PAUSED = true
+    document.getElementById("pause").innerHTML = "Play"
 };
 document.getElementById("step").addEventListener("click", step)
 
@@ -48,14 +51,28 @@ document.getElementById("compile").addEventListener("click", compile)
 
 let run = event => {
     startTime = performance.now()
-    runGame()
+
+    if (RUNNING)
+        stopGame()
+    else
+        runGame()
+
+    RUNNING = !RUNNING
+    document.getElementById("run").innerHTML = RUNNING ? "Stop" : "Run"
 }
 document.getElementById("run").addEventListener("click", run)
 
-let stop = event => {
-    stopGame()
+let warp = event => {
+    if(PAUSED){
+        togglePause()
+        PAUSED = false
+    }
+    REALTIME = !REALTIME
+    setRealTime(REALTIME)
+    document.getElementById("pause").innerHTML = "Pause"
+    document.getElementById("warp").innerHTML = REALTIME ? "Warp" : "Normal"
 }
-document.getElementById("stop").addEventListener("click", stop)
+document.getElementById("warp").addEventListener("click", warp)
 
 var callback = function(){
 
