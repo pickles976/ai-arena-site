@@ -9,6 +9,31 @@
     --text-2: #8bcc8b;
 }
 
+body .ace_scrollbar-h {
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    /* background: #f1f1f1; */
+    background: var(--secondary);
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    /* background: var(--secondary); */
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
 .header {
     position: relative;
     display: block;
@@ -68,7 +93,7 @@
 #editor { 
     position: relative;
     min-height: 100px;
-    height: 89vh;
+    height: 89.5vh;
     width: 100%;
     top: 0;
     right: 0;

@@ -67,13 +67,13 @@ var callback = function(){
 
     document.getElementById('team0-kills').innerHTML = team0["kills"]
     document.getElementById('team0-deaths').innerHTML = team0["deaths"]
-    document.getElementById('team0-metal').innerHTML = team0["metal"]
-    document.getElementById('team0-energy').innerHTML = team0["energy"]
+    document.getElementById('team0-metal').innerHTML = Math.round(team0["metal"])
+    document.getElementById('team0-energy').innerHTML = Math.round(team0["energy"])
 
     document.getElementById('team1-kills').innerHTML = team1["kills"]
     document.getElementById('team1-deaths').innerHTML = team1["deaths"]
-    document.getElementById('team1-metal').innerHTML = team1["metal"]
-    document.getElementById('team1-energy').innerHTML = team1["energy"]
+    document.getElementById('team1-metal').innerHTML = Math.round(team1["metal"])
+    document.getElementById('team1-energy').innerHTML = Math.round(team1["energy"])
 
     document.getElementById('timer').innerHTML = 'Timesteps: ' + ((performance.now() - startTime) * 60 / 1000).toFixed(0)
 
@@ -114,10 +114,10 @@ const populateShipPanel = function(ships){
             const child = document.createElement('ship-object')
             child.uuid = obj.uuid
             child.damage = obj.damage
-            child.maxEnergy = obj.maxEnergy
-            child.energy = obj.resources.energy.toFixed(1)
+            child.energy = obj.resources.energy.toFixed(1) + '/' + obj.maxEnergy
             child.metal = obj.resources.metal.toFixed(1)
             child.water = obj.resources.water.toFixed(1)
+            child.addEventListener("click",()=>{memoryIndexClick(obj)})
             element.append(child)
         }
 
@@ -125,7 +125,7 @@ const populateShipPanel = function(ships){
 
 }
 
-
+// This is what populates the memory panel with the fields of a selected object
 const populateMemoryPanel = function(obj){
     const element = document.getElementById('memory-inspector')
     removeChildren(element) // clear all the old fields
@@ -136,6 +136,7 @@ const populateMemoryPanel = function(obj){
     traverseObject(element,obj,tabs)
 }
 
+// Traverse the object as a tree and print out its fields
 const traverseObject = function(element,obj,tabs){
 
     for(const field in obj){
@@ -143,13 +144,13 @@ const traverseObject = function(element,obj,tabs){
 
             if (typeof obj[field] == 'object'){
                 const child = document.createElement('mem-field')
-                child.field = '\u2003'.repeat(tabs) + field
+                child.field = '\u2003'.repeat(tabs) + field.toUpperCase()
                 child.value = ''
                 element.appendChild(child)
                 traverseObject(element,obj[field],tabs+1)
             }else{
                 const child = document.createElement('mem-field')
-                child.field = '\u2003'.repeat(tabs) + field
+                child.field = '\u2003'.repeat(tabs) + field.toUpperCase()
                 child.value = obj[field]
                 element.appendChild(child)
             }

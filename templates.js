@@ -10,7 +10,8 @@ Slim.element(
     cursor: pointer; 
     margin: auto; 
     margin-top: 0.25%;
-    width: 95%;
+    margin-bottom: 0.25%;
+    width: 100%;
     height: 10%;
     display: flex;
     background-color: var(--primary)'>
@@ -32,7 +33,7 @@ Slim.element(
       margin: auto; 
       margin-top: 0.25%;
       margin-bottom: 0.25%;
-      width: 95%;
+      width: 100%;
       height: 10%;
       display: flex;
       background-color: var(--primary)
@@ -51,6 +52,7 @@ Slim.element(
   `
     <div style='
       font-size: 1.5vmin;
+      cursor: pointer; 
       margin: 4%; 
       width: 95%;
       min-width: 10%
@@ -64,9 +66,6 @@ Slim.element(
     </div>
     <div>
       <text style='margin: auto; margin-left: 1%;'>Damage : {{this.damage}}</text>
-    </div>
-    <div>
-      <text style='margin: auto; margin-left: 1%;'>Max Energy : {{this.maxEnergy}}</text>
     </div>
     <div>
       <text style='margin: auto; margin-left: 1%;'>Energy : {{this.energy}}</text>
