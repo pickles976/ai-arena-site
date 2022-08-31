@@ -4,6 +4,9 @@
     --ratio: calc(var(--game-width) / var(--game-height));
     --primary: #2D2D2D;
     --secondary: #272727;
+
+    --text-1: #c2cccc;
+    --text-2: #8bcc8b;
 }
 
 .header {
@@ -54,11 +57,12 @@
 }
 
 .body {
-    background-color: #454545;
-    color: white;
+    background-color: var(--secondary);
+    color: var(--text-2);
     margin: 0;
     border: 0;
     font-size: 1.7vmin;
+    font-family: monospace;
 }
 
 #editor { 
@@ -111,7 +115,7 @@ body .ace_scrollbar-v {
 }
 
 .middlePane {
-    width: 50%;
+    width: 48%;
     height: 100%;
     float: left;
     border-collapse: collapse;
@@ -120,7 +124,7 @@ body .ace_scrollbar-v {
 }
 
 .rightPane {
-    width: 10%;
+    width: 12%;
     height: 100%;
     float: right;
     border-collapse: collapse;
@@ -145,11 +149,11 @@ body .ace_scrollbar-v {
 }
 
 .canvasContainer {
-    width: 98%;
+    width: 100%;
     /* height: 100%; */
     border: 0;
     margin: 0;
-    margin-left: 1%;
+    /* margin-left: 1%; */
     display: flex;
 }
 
@@ -167,7 +171,10 @@ body .ace_scrollbar-v {
     margin: auto;
     width: 100%;
     height: 78vh;
-    background-color: #cc99cc;
+    background-color: var(--secondary);
+    flex-shrink: 0;
+    overflow-y: auto;
+    text-align: center;
 }
 
 .game-controls {
@@ -176,8 +183,8 @@ body .ace_scrollbar-v {
     transform: translateY(-100%);
     justify-content: center;
     margin: auto;
-    height: 2.5vh;
-    margin-bottom: -2.5vh;
+    height: 4.0vh;
+    margin-bottom: -4.0vh;
     display: flex;
 }
 
@@ -194,7 +201,7 @@ nav ul{overflow:hidden; overflow-y:auto; direction:rtl;margin: auto; padding: 0;
     display: flex;
     margin: 0;
     width: 100%;
-    height: calc(93.5vh - (100vw / 3.0));
+    height: calc(93.5vh - (100vw / (1.5 / 0.48)));
     align-items: stretch;
 }
 
@@ -202,10 +209,28 @@ nav ul{overflow:hidden; overflow-y:auto; direction:rtl;margin: auto; padding: 0;
     margin: auto;
     width: 33%;
     height: 100%;
-    background-color: var(--primary);
+    background-color: var(--secondary);
     text-align: left;
     flex-shrink: 0;
     overflow-y: auto;
+}
+
+.btn-main:hover {
+    background-color: var(--secondary);
+}
+
+.btn-main {
+    color: var(--text-2);
+    background-color: var(--primary);
+    border: none;
+    margin: 0.2%;
+}
+
+.selector-main {
+    color: var(--text-2);
+    background-color: var(--primary);
+    border: none;
+    margin: 0.2%;
 }
 
 .memory-inspect {
@@ -214,7 +239,7 @@ nav ul{overflow:hidden; overflow-y:auto; direction:rtl;margin: auto; padding: 0;
     width: 66%;
     height: 100%;
     max-height: 100%;
-    background-color: var(--primary);
+    background-color: var(--secondary);
     text-align: left;
     flex-shrink: 0;
     overflow-y: auto;
@@ -225,6 +250,7 @@ nav ul{overflow:hidden; overflow-y:auto; direction:rtl;margin: auto; padding: 0;
     justify-content: center;
     align-content: center;
     display: flex;
+    background-color: var(--secondary);
 }
 
 /* FLEXBOX GRID */
@@ -233,6 +259,7 @@ nav ul{overflow:hidden; overflow-y:auto; direction:rtl;margin: auto; padding: 0;
     height: 12.5vh;
     font-size: 16px;
     font-size: 1.7vmin;
+    background-color: var(--secondary);
 }
 
 .teams-info {
@@ -244,7 +271,9 @@ nav ul{overflow:hidden; overflow-y:auto; direction:rtl;margin: auto; padding: 0;
 }
 
 .cell {
-    border:1px solid white;
+    /* border:1px solid white; */
+    background-color: var(--primary);
+    margin: 5%;
 }
 
 .col-left {

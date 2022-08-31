@@ -34,18 +34,18 @@
             <!-- LEFT PANE -->
             <div class="leftPane">
                 <!-- stacking -->
-                <div style="margin: auto; width: 100%;">
+                <div style="margin: auto; width: 100%; margin-top: -0.1%;">
 
                     <!-- CODE CONTROLS -->
                     <div class="code-controls">
                         <div class="container">
-                            <select class="btn btn-secondary dropdown-toggle" id="select-script">
+                            <select class="btn-main dropdown-toggle" id="select-script">
                                 <option selected>Ship Update</option>
                                 <option>Ship Start</option>
                                 <option>Base Update</option>
                                 <option>Base Start</option>
                             </select>
-                            <button id="compile">Compile</button>
+                            <button id="compile" class="btn-main">Compile</button>
                         </div>
                     </div>
 
@@ -65,10 +65,10 @@
                 </div>
 
                 <div class="game-controls">
-                    <button id="run">Run</button>
-                    <button id="stop">Stop</button>
-                    <button id="pause">Pause</button>
-                    <button id="step">Step</button>
+                    <button id="run" class="btn-main">Run</button>
+                    <button id="stop" class="btn-main">Stop</button>
+                    <button id="pause" class="btn-main">Pause</button>
+                    <button id="step" class="btn-main">Step</button>
                 </div>
 
                 <!-- MEMORY CONTAINER-->
@@ -89,7 +89,6 @@
             <!-- RIGHT PANE -->
             <div class="rightPane">
 
-                <!-- CURRENT SCORE INFO -->
                 <div class="score-panel">
                     <div class="teams-info" id="teams-info">
                             <div class="container row">
@@ -124,12 +123,9 @@
                 </div>
 
                 <!-- SHIP INFO -->
-                <div class="ship-panel">
+                <div id='ship-panel' class="ship-panel">
                     <!-- TODO: PUT INFO ABOUT SHIPS HERE -->
-                    <nav>
-                        <ul id="ship-list">
-                        </ul>
-                    </nav>
+        
                 </div>
             </div>
         </div>

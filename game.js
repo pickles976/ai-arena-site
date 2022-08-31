@@ -75,9 +75,10 @@ var callback = function(){
     document.getElementById('team1-metal').innerHTML = team1["metal"]
     document.getElementById('team1-energy').innerHTML = team1["energy"]
 
-    const ships = getShipsInfo()
-
     document.getElementById('timer').innerHTML = 'Timesteps: ' + ((performance.now() - startTime) * 60 / 1000).toFixed(0)
+
+
+    //
 
     const gameState = getGameState()
 
@@ -88,11 +89,52 @@ var callback = function(){
     if(currentObj)
         populateMemoryPanel(currentObj)
 
+    const ships = getShipsInfo()
+
+    if (ships['team0'] && ships['team1'])
+        populateShipPanel(ships)
+
     console.log(performance.now() - start)
 }
 
 setUICallbacks(callback)
 
+
+const populateShipPanel = function(ships){
+    const element = document.getElementById('ship-panel')
+    removeChildren(element) // clear all the old fields
+
+    for(const field in ships){
+
+        const label = document.createElement('label')
+        label.innerHTML = field
+        element.appendChild(label)
+
+        for (const obj of ships[field]){
+            const child = document.createElement('ship-object')
+            child.uuid = obj.uuid
+            child.damage = obj.damage
+            child.maxEnergy = obj.maxEnergy
+            child.energy = obj.resources.energy.toFixed(1)
+            child.metal = obj.resources.metal.toFixed(1)
+            child.water = obj.resources.water.toFixed(1)
+            element.append(child)
+        }
+
+    }
+
+}
+
+
+const populateMemoryPanel = function(obj){
+    const element = document.getElementById('memory-inspector')
+    removeChildren(element) // clear all the old fields
+
+    let tabs = 0
+    // draw a circle
+    drawCircle(obj.transform.position)
+    traverseObject(element,obj,tabs)
+}
 
 const traverseObject = function(element,obj,tabs){
 
@@ -114,16 +156,6 @@ const traverseObject = function(element,obj,tabs){
         }
     }
 
-}
-
-const populateMemoryPanel = function(obj){
-    const element = document.getElementById('memory-inspector')
-    removeChildren(element) // clear all the old fields
-
-    let tabs = 0
-    // draw a circle
-    drawCircle(obj.transform.position)
-    traverseObject(element,obj,tabs)
 }
 
 // index click callbacks
