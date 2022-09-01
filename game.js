@@ -2,14 +2,6 @@ import { BaseStart, BaseUpdate, ShipStart, ShipUpdate } from './aiControls.js'
 import { setRealTime, stopGame, setCanvas, testPackage, runGame, togglePause, stepFrame, getGameInfo, setUICallbacks, getGameState, getShipsInfo, setShipStartCode, setShipUpdateCode, setBaseStartCode, setBaseUpdateCode} from './node_modules/ai-arena/dist/index.js'
 import { getCodeFromEditor } from './editor.js'
 
-let ObjectDict = {}
-
-let PAUSED = false;
-let REALTIME = true;
-let RUNNING = false;
-
-let startTime = performance.now()
-
 // INITIALIZATION
 console.log(testPackage())
 
@@ -20,13 +12,22 @@ setCanvas(canvas)
 const ctx = canvas.getContext('2d')
 ctx.fillRect(0,0,2000,2000)
 
-setBaseStartCode(0,BaseStart)
-setBaseUpdateCode(0,BaseUpdate)
-setShipStartCode(0,ShipStart)
-setShipUpdateCode(0,ShipUpdate)
+setBaseStartCode(0,localStorage.getItem("Base Start") || BaseStart)
+setBaseUpdateCode(0,localStorage.getItem("Base Start") || BaseUpdate)
+setShipStartCode(0,localStorage.getItem("Base Start") || ShipStart)
+setShipUpdateCode(0,localStorage.getItem("Base Start") || ShipUpdate)
+
+let ObjectDict = {}
+
+let PAUSED = false;
+let REALTIME = true;
+let RUNNING = false;
+
+let startTime = performance.now()
 
 let uuid = undefined
 
+// BUTTON CALLBACKS
 let pause = event => {
     togglePause()
     PAUSED = !PAUSED
@@ -43,6 +44,7 @@ document.getElementById("step").addEventListener("click", step)
 
 let compile = event => {
     var code = getCodeFromEditor()
+    console.log(code)
     setBaseStartCode(0,code["Base Start"])
     setBaseUpdateCode(0,code["Base Update"])
     setShipStartCode(0,code["Ship Start"])
@@ -56,7 +58,13 @@ let run = event => {
     if (RUNNING)
         stopGame()
     else
+        try {
         runGame()
+        } 
+        catch(e)
+        {
+            alert(" Your code broke my site dude!!! \n" + e)
+        }
 
     RUNNING = !RUNNING
     document.getElementById("run").innerHTML = RUNNING ? "Stop" : "Run"
@@ -75,6 +83,7 @@ let warp = event => {
 }
 document.getElementById("warp").addEventListener("click", warp)
 
+// IN-GAME CALLBACKS
 var callback = function(){
 
     const start = performance.now()
@@ -96,17 +105,16 @@ var callback = function(){
     document.getElementById('timer').innerHTML = 'Timesteps: ' + ((performance.now() - startTime) * 60 / 1000).toFixed(0)
 
 
-    //
-
+    // Draw an index for every object in the game
     const gameState = getGameState()
-
     drawMemoryTags(memoryList,gameState)
 
+    // Load selected object into memory panel if it exists
     if(ObjectDict[uuid])
         populateMemoryPanel(ObjectDict[uuid])
 
+    // Draw all the ships on the ship panel
     const ships = getShipsInfo()
-
     if (ships['team0'] && ships['team1'])
         populateShipPanel(ships['team0'],document.getElementById('ship-panel-0'))
         populateShipPanel(ships['team1'],document.getElementById('ship-panel-1'))
@@ -114,9 +122,8 @@ var callback = function(){
     console.log(performance.now() - start)
 }
 
-setUICallbacks(callback)
 
-
+// PANEL CONTROLS
 const populateShipPanel = function(ships,element){
 
     let children = element.children
@@ -152,6 +159,14 @@ const populateMemoryPanel = function(obj){
     // draw a circle
     drawCircle(obj.transform.position)
     traverseObject(element,obj,tabs)
+}
+
+const removeChildren = function(element){
+    var child = element.lastElementChild; 
+    while (child) {
+        element.removeChild(child);
+        child = element.lastElementChild;
+    }
 }
 
 // Traverse the object as a tree and print out its fields
@@ -216,14 +231,6 @@ const drawMemoryTags = function(element,memDump){
 
 }
 
-const removeChildren = function(element){
-    var child = element.lastElementChild; 
-    while (child) {
-        element.removeChild(child);
-        child = element.lastElementChild;
-    }
-}
-
 const removeOrphans = function(element){
 
     for(const child of element.children){
@@ -241,3 +248,5 @@ const drawCircle = function(pos){
     ctx.fill()
     ctx.globalAlpha = 1.0
 }
+
+setUICallbacks(callback)

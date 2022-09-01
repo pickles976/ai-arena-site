@@ -27,6 +27,7 @@ function selectScript(event) {
 }
 document.getElementById("select-script").addEventListener("change", selectScript)
 
+// Get object containing code from all editor sections
 export var getCodeFromEditor = function(){
     sessions[oldSessionValue] = editor.getSession().getValue()
 
@@ -36,19 +37,26 @@ export var getCodeFromEditor = function(){
     Object.keys(sessions).forEach(function(key, index) {
         const value = sessions[key]
         if (typeof value === "string")
+        {
             sessionCode[key] = value
+            localStorage.setItem(key,value || " ") // if value is null, undefined, or '', replace it with a single space string
+        }
         else
+        {
             sessionCode[key] = value.getValue();
+            localStorage.setItem(key,value.getValue() || " ")
+        }
       });
 
     return sessionCode
 }
 
+// Load the previous session from storage, or load the default code
 var sessions = {
-    'Base Start' : BaseStart,
-    'Base Update' : BaseUpdate,
-    'Ship Start' : ShipStart,
-    'Ship Update' : ShipUpdate,
+    'Base Start' : localStorage.getItem("Base Start") || BaseStart,
+    'Base Update' : localStorage.getItem("Base Update") || BaseUpdate,
+    'Ship Start' : localStorage.getItem("Ship Start") || ShipStart,
+    'Ship Update' : localStorage.getItem("Ship Update") || ShipUpdate,
 }
 
 var oldSessionValue = "Ship Update"
@@ -60,6 +68,3 @@ editor.setTheme("ace/theme/tomorrow_night_eighties");
 editor.session.setValue(sessions[oldSessionValue])
 
 setEditorOptions(editor)
-
-// USE THIS TO PICK A COLOR PALETTE FOR THE GAME
-// console.log(editor.renderer.theme.cssText)
