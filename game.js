@@ -2,6 +2,7 @@ import { BaseStart, BaseUpdate, ShipStart, ShipUpdate } from './aiControls.js'
 import { setRealTime, stopGame, setCanvas, testPackage, runGame, togglePause, stepFrame, getGameInfo, setUICallbacks, getGameState, getShipsInfo, setShipStartCode, setShipUpdateCode, setBaseStartCode, setBaseUpdateCode} from './node_modules/ai-arena/dist/index.js'
 import { getCodeFromEditor } from './editor.js'
 
+let ObjectDict = {}
 
 let PAUSED = false;
 let REALTIME = true;
@@ -101,15 +102,14 @@ var callback = function(){
 
     drawMemoryTags(memoryList,gameState)
 
-    const currentObj = (gameState.filter((obj) => obj && obj.uuid === uuid) || [undefined])[0]
-
-    if(currentObj)
-        populateMemoryPanel(currentObj)
+    if(ObjectDict[uuid])
+        populateMemoryPanel(ObjectDict[uuid])
 
     const ships = getShipsInfo()
 
     if (ships['team0'] && ships['team1'])
-        populateShipPanel(ships)
+        populateShipPanel(ships['team0'],document.getElementById('ship-panel-0'))
+        populateShipPanel(ships['team1'],document.getElementById('ship-panel-1'))
 
     console.log(performance.now() - start)
 }
@@ -117,27 +117,29 @@ var callback = function(){
 setUICallbacks(callback)
 
 
-const populateShipPanel = function(ships){
-    const element = document.getElementById('ship-panel')
-    removeChildren(element) // clear all the old fields
+const populateShipPanel = function(ships,element){
 
-    for(const field in ships){
+    let children = element.children
 
-        const label = document.createElement('label')
-        label.innerHTML = field
-        element.appendChild(label)
+    let childIds = {}
 
-        for (const obj of ships[field]){
+    for (let child of children){
+        childIds[child.uuid] = true
+    }
+
+    removeOrphans(element) // clear all the old fields
+
+    for (const obj of ships){
+        if(!(obj.uuid in childIds)){
             const child = document.createElement('ship-object')
             child.uuid = obj.uuid
             child.damage = obj.damage
             child.energy = obj.resources.energy.toFixed(1) + '/' + obj.maxEnergy
             child.metal = obj.resources.metal.toFixed(1)
             child.water = obj.resources.water.toFixed(1)
-            child.addEventListener("click",()=>{memoryIndexClick(obj)})
+            child.addEventListener("click",()=>{memoryIndexClick(obj.uuid)})
             element.append(child)
         }
-
     }
 
 }
@@ -146,7 +148,6 @@ const populateShipPanel = function(ships){
 const populateMemoryPanel = function(obj){
     const element = document.getElementById('memory-inspector')
     removeChildren(element) // clear all the old fields
-
     let tabs = 0
     // draw a circle
     drawCircle(obj.transform.position)
@@ -177,32 +178,42 @@ const traverseObject = function(element,obj,tabs){
 }
 
 // index click callbacks
-const memoryIndexClick = function(obj){
-    uuid = obj.uuid
-    populateMemoryPanel(obj)
+const memoryIndexClick = function(id){
+    if (id in ObjectDict){
+        uuid = id
+        populateMemoryPanel(ObjectDict[id])
+    }
 }
 
 // Each index in the memory list has a callback
 const addMemoryIndex = function(element,obj){
     const child = document.createElement('mem-index')
-    child.objectType = obj.type
-    child.objectId = obj.uuid
+    child.type = obj.type
+    child.uuid = obj.uuid
 
     // add callback to open memory inspector here
-    child.addEventListener("click",()=>{memoryIndexClick(obj)})
+    child.addEventListener("click",()=>{memoryIndexClick(obj.uuid)})
     element.appendChild(child)
 }
 
 // Draw the list of memory objects that are clickable
 const drawMemoryTags = function(element,memDump){
 
-    removeChildren(element)
+    // removeChildren(element)
+    removeOrphans(element)
 
-    for(let i = 0; i < memDump.length; i++){
-        const obj = memDump[i]
-        if (obj != undefined)
+    for(const obj of memDump){
+        if (obj != undefined && !(obj.uuid in ObjectDict))
             addMemoryIndex(element,obj)
     }
+
+    ObjectDict = {}
+
+    for (const obj of memDump){
+        if (obj != undefined)
+            ObjectDict[obj.uuid] = obj
+    }
+
 }
 
 const removeChildren = function(element){
@@ -213,10 +224,16 @@ const removeChildren = function(element){
     }
 }
 
+const removeOrphans = function(element){
+
+    for(const child of element.children){
+        if (!(child.uuid in ObjectDict))
+            element.removeChild(child)
+    }
+
+}
+
 const drawCircle = function(pos){
-
-    ctx.restore()
-
     ctx.fillStyle = "#FFFF00"
     ctx.globalAlpha = 0.3
     ctx.beginPath()

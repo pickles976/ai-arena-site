@@ -19,7 +19,7 @@ Slim.element(
         margin: auto;
         margin-left: 5%;'
         id='mem-index-text'>
-          {{this.objectType}} : {{this.objectId}}
+          {{this.type}} : {{this.uuid}}
         </a>
     </div>
   `
