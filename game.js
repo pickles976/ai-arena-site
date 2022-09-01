@@ -13,9 +13,9 @@ const ctx = canvas.getContext('2d')
 ctx.fillRect(0,0,2000,2000)
 
 setBaseStartCode(0,localStorage.getItem("Base Start") || BaseStart)
-setBaseUpdateCode(0,localStorage.getItem("Base Start") || BaseUpdate)
-setShipStartCode(0,localStorage.getItem("Base Start") || ShipStart)
-setShipUpdateCode(0,localStorage.getItem("Base Start") || ShipUpdate)
+setBaseUpdateCode(0,localStorage.getItem("Base Update") || BaseUpdate)
+setShipStartCode(0,localStorage.getItem("Ship Start") || ShipStart)
+setShipUpdateCode(0,localStorage.getItem("Ship Update") || ShipUpdate)
 
 let ObjectDict = {}
 
