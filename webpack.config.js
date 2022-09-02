@@ -1,5 +1,5 @@
 module.exports = {
-    entry: './src/main.js',
+    entry: ['./src/editor.js','./src/game.js'],
     output: {
         path: __dirname + '/dist',
         filename: 'bundle.js'
@@ -15,5 +15,12 @@ module.exports = {
                 }
             }
         }]
+    },
+    devServer: {
+        static: {
+          directory: __dirname,
+        },
+        compress: true,
+        port: 9000,
     }
 }

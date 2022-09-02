@@ -1,5 +1,3 @@
-import { Slim } from 'slim-js';
-
 Slim.element(
   'mem-index',
   `
