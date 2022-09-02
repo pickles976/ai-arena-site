@@ -7,18 +7,25 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="static/styles.css">
 
         <link rel="icon" type="image/x-icon" href="/static/logo_med.png">
 
-        <script src="/ace-builds/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
-        <script src="/ace-builds/src-min-noconflict/ext-language-tools.js"></script>
+        <script type="importmap">
+            {
+              "imports": {
+                "ai-arena": "/node_modules/ai-arena/dist/index.js",
+                "slim-js": "/node_modules/slim-js/dist/index.nonminified.js"
+              }
+            }
+        </script>
 
-        <script type="module" src="templates.js" async defer></script>
-        <script type="module" src="game.js" async defer></script>
-        <script type="module" src="editor.js" async defer></script>
+        <script src="src/ace-builds/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+        <script src="src/ace-builds/src-min-noconflict/ext-language-tools.js"></script>
 
-
+        <script type="module" src="src/templates.js" async defer></script>
+        <script type="module" src="src/game.js" async defer></script>
+        <script type="module" src="src/editor.js" async defer></script>
     </head>
     <body class="body bg-grime">
         

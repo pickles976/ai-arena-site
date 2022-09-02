@@ -1,6 +1,4 @@
-import { Slim } from './node_modules/slim-js/dist/index.nonminified.js';
-
-let background = "#182125"
+import { Slim } from 'slim-js';
 
 Slim.element(
   'mem-index',

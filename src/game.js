@@ -2,31 +2,6 @@ import { BaseStart, BaseUpdate, ShipStart, ShipUpdate } from './aiControls.js'
 import { setRealTime, stopGame, setCanvas, testPackage, runGame, togglePause, stepFrame, getGameInfo, setUICallbacks, getGameState, getShipsInfo, setShipStartCode, setShipUpdateCode, setBaseStartCode, setBaseUpdateCode} from 'ai-arena'
 import { getCodeFromEditor } from './editor.js'
 
-// INITIALIZATION
-console.log(testPackage())
-
-const memoryList = document.getElementById('memory-select')
-
-const canvas = document.getElementById("game-canvas")
-setCanvas(canvas)
-const ctx = canvas.getContext('2d')
-ctx.fillRect(0,0,2000,2000)
-
-setBaseStartCode(0,localStorage.getItem("Base Start") || BaseStart)
-setBaseUpdateCode(0,localStorage.getItem("Base Update") || BaseUpdate)
-setShipStartCode(0,localStorage.getItem("Ship Start") || ShipStart)
-setShipUpdateCode(0,localStorage.getItem("Ship Update") || ShipUpdate)
-
-let ObjectDict = {}
-
-let PAUSED = false;
-let REALTIME = true;
-let RUNNING = false;
-
-let startTime = performance.now()
-
-let uuid = undefined
-
 // BUTTON CALLBACKS
 let pause = event => {
     togglePause()
@@ -248,5 +223,30 @@ const drawCircle = function(pos){
     ctx.fill()
     ctx.globalAlpha = 1.0
 }
+
+// INITIALIZATION
+console.log(testPackage())
+
+const memoryList = document.getElementById('memory-select')
+
+const canvas = document.getElementById("game-canvas")
+setCanvas(canvas)
+const ctx = canvas.getContext('2d')
+ctx.fillRect(0,0,2000,2000)
+
+setBaseStartCode(0,localStorage.getItem("Base Start") || BaseStart)
+setBaseUpdateCode(0,localStorage.getItem("Base Update") || BaseUpdate)
+setShipStartCode(0,localStorage.getItem("Ship Start") || ShipStart)
+setShipUpdateCode(0,localStorage.getItem("Ship Update") || ShipUpdate)
+
+let ObjectDict = {}
+
+let PAUSED = false;
+let REALTIME = true;
+let RUNNING = false;
+
+let startTime = performance.now()
+
+let uuid = undefined
 
 setUICallbacks(callback)
