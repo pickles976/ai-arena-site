@@ -1,0 +1,1 @@
+alias aws='C:\Program Files\Amazon\AWSCLIV2\aws'
