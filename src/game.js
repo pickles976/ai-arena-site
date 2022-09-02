@@ -44,7 +44,6 @@ document.getElementById("step").addEventListener("click", step)
 
 let compile = event => {
     var code = getCodeFromEditor()
-    console.log(code)
     setBaseStartCode(0,code["Base Start"])
     setBaseUpdateCode(0,code["Base Update"])
     setShipStartCode(0,code["Ship Start"])
@@ -119,7 +118,7 @@ var callback = function(){
         populateShipPanel(ships['team0'],document.getElementById('ship-panel-0'))
         populateShipPanel(ships['team1'],document.getElementById('ship-panel-1'))
 
-    console.log(performance.now() - start)
+    // console.log(performance.now() - start)
 }
 
 
