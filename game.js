@@ -1,5 +1,5 @@
 import { BaseStart, BaseUpdate, ShipStart, ShipUpdate } from './aiControls.js'
-import { setRealTime, stopGame, setCanvas, testPackage, runGame, togglePause, stepFrame, getGameInfo, setUICallbacks, getGameState, getShipsInfo, setShipStartCode, setShipUpdateCode, setBaseStartCode, setBaseUpdateCode} from './node_modules/ai-arena/dist/index.js'
+import { setRealTime, stopGame, setCanvas, testPackage, runGame, togglePause, stepFrame, getGameInfo, setUICallbacks, getGameState, getShipsInfo, setShipStartCode, setShipUpdateCode, setBaseStartCode, setBaseUpdateCode} from 'ai-arena'
 import { getCodeFromEditor } from './editor.js'
 
 // INITIALIZATION
