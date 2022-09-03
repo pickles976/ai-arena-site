@@ -73,6 +73,17 @@ body .ace_scrollbar-h {
     font-size: 3vmin;
 }
 
+.version {
+    display: inline-block;
+    margin: auto;
+    margin-left: 8.5%;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    font-size: 1.5vmin;
+}
+
 .logo {
     /* margin: 8px; */
     padding: 8px;
@@ -249,6 +260,7 @@ nav ul{overflow:hidden; overflow-y:auto; direction:rtl;margin: auto; padding: 0;
     background-color: var(--primary);
     border: none;
     margin: 0.2%;
+    font-family: monospace;
 }
 
 .selector-main {

@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "ai-arena": "^1.0.2",
+    "ai-arena": "1.0.4",
     "http-server": "^14.1.1",
     "slim-js": "^5.0.10"
   },
