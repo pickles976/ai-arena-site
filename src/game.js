@@ -1,5 +1,5 @@
 import { BaseStart, BaseUpdate, ShipStart, ShipUpdate } from './aiControls.js'
-import { setRealTime, stopGame, setCanvas, testPackage, runGame, togglePause, stepFrame, getGameInfo, setUICallbacks, getGameState, getShipsInfo, setShipStartCode, setShipUpdateCode, setBaseStartCode, setBaseUpdateCode} from 'ai-arena'
+import { setTicksPerFrame, stopGame, setCanvas, testPackage, runGame, togglePause, stepFrame, getGameInfo, setUICallbacks, getGameState, getShipsInfo, setShipStartCode, setShipUpdateCode, setBaseStartCode, setBaseUpdateCode} from 'ai-arena'
 import { getCodeFromEditor } from './editor.js'
 
 // INITIALIZATION
@@ -20,8 +20,11 @@ setShipUpdateCode(0,localStorage.getItem("Ship Update") || ShipUpdate)
 let ObjectDict = {}
 
 let PAUSED = false;
-let REALTIME = true;
+let TICKS_PER_FRAME = 1;
+let WARP_SPEED = 8;
 let RUNNING = false;
+
+setTicksPerFrame(TICKS_PER_FRAME)
 
 let startTime = performance.now()
 
@@ -75,10 +78,10 @@ let warp = event => {
         togglePause()
         PAUSED = false
     }
-    REALTIME = !REALTIME
-    setRealTime(REALTIME)
+    TICKS_PER_FRAME = TICKS_PER_FRAME === 1 ? WARP_SPEED : 1
+    setTicksPerFrame(TICKS_PER_FRAME)
     document.getElementById("pause").innerHTML = "Pause"
-    document.getElementById("warp").innerHTML = REALTIME ? "Warp" : "Normal"
+    document.getElementById("warp").innerHTML = TICKS_PER_FRAME === 1 ? "Warp" : "Normal"
 }
 document.getElementById("warp").addEventListener("click", warp)
 
