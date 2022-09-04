@@ -133,7 +133,7 @@ const populateShipPanel = function(ships,element){
     let childIds = {}
 
     for (let child of children){
-        childIds[child.uuid] = true
+        childIds[child.uuid] = child
     }
 
     removeOrphans(element) // clear all the old fields
@@ -148,6 +148,13 @@ const populateShipPanel = function(ships,element){
             child.water = obj.resources.water.toFixed(1)
             child.addEventListener("click",()=>{memoryIndexClick(obj.uuid)})
             element.append(child)
+        }else{
+            const child = childIds[obj.uuid]
+            child.uuid = obj.uuid
+            child.damage = obj.damage
+            child.energy = obj.resources.energy.toFixed(1) + '/' + obj.maxEnergy
+            child.metal = obj.resources.metal.toFixed(1)
+            child.water = obj.resources.water.toFixed(1)
         }
     }
 
