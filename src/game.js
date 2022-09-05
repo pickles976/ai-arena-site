@@ -1,5 +1,5 @@
 import { BaseStart, BaseUpdate, ShipStart, ShipUpdate } from './aiControls.js'
-import { setTicksPerFrame, stopGame, setCanvas, testPackage, runGame, togglePause, stepFrame, getGameInfo, setUICallbacks, getGameState, getShipsInfo, setShipStartCode, setShipUpdateCode, setBaseStartCode, setBaseUpdateCode} from 'ai-arena'
+import { setTicksPerFrame, stopGame, setCanvas, testPackage, runGame, togglePause, stepFrame, getGameInfo, setUICallbacks, getGameState, getShipsInfo, setShipStartCode, setShipUpdateCode, setBaseStartCode, setBaseUpdateCode, updateGameSpeed} from 'ai-arena'
 import { getCodeFromEditor } from './editor.js'
 
 // INITIALIZATION
@@ -12,10 +12,15 @@ setCanvas(canvas)
 const ctx = canvas.getContext('2d')
 ctx.fillRect(0,0,2000,2000)
 
-setBaseStartCode(0,localStorage.getItem("Base Start") || BaseStart)
-setBaseUpdateCode(0,localStorage.getItem("Base Update") || BaseUpdate)
-setShipStartCode(0,localStorage.getItem("Ship Start") || ShipStart)
-setShipUpdateCode(0,localStorage.getItem("Ship Update") || ShipUpdate)
+// setBaseStartCode(0,localStorage.getItem("Base Start"))
+// setBaseUpdateCode(0,localStorage.getItem("Base Update"))
+// setShipStartCode(0,localStorage.getItem("Ship Start"))
+// setShipUpdateCode(0,localStorage.getItem("Ship Update"))
+
+// setBaseStartCode(0,localStorage.getItem("Base Start") || BaseStart)
+// setBaseUpdateCode(0,localStorage.getItem("Base Update") || BaseUpdate)
+// setShipStartCode(0,localStorage.getItem("Ship Start") || ShipStart)
+// setShipUpdateCode(0,localStorage.getItem("Ship Update") || ShipUpdate)
 
 let ObjectDict = {}
 
@@ -80,6 +85,7 @@ let warp = event => {
     }
     TICKS_PER_FRAME = TICKS_PER_FRAME === 1 ? WARP_SPEED : 1
     setTicksPerFrame(TICKS_PER_FRAME)
+    updateGameSpeed()
     document.getElementById("pause").innerHTML = "Pause"
     document.getElementById("warp").innerHTML = TICKS_PER_FRAME === 1 ? "Warp" : "Normal"
 }
@@ -166,8 +172,11 @@ const populateMemoryPanel = function(obj){
     removeChildren(element) // clear all the old fields
     let tabs = 0
     // draw a circle
-    drawCircle(obj.transform.position)
-    traverseObject(element,obj,tabs)
+    if(obj){
+        console.log(obj)
+        drawCircle(obj.transform.position)
+        traverseObject(element,obj,tabs)
+    }
 }
 
 const removeChildren = function(element){
