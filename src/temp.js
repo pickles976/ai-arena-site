@@ -1,48 +1,4 @@
-export const BaseStart = 'let t = "test"'
-
-
-export const BaseUpdate = 
-`const energyPerShip = 100
-const shipEnergy = 50
-
-if (base.resources.metal > base.shipCost && base.resources.energy > energyPerShip * Game.getShipsByTeam(base.team).length){
-    base.spawnShip(shipEnergy,false)
-}
-
-if (base.resources.metal > base.upgradeMaxEnergyCost){
-    base.upgradeMaxEnergy()
-}
-
-if (base.resources.metal > base.upgradeRefiningEfficiencyCost){
-    base.upgradeRefiningEfficiency()
-}
-
-if (base.resources.metal > base.upgradeInteractRadiusCost){
-    base.upgradeInteractRadius()
-}
-
-if (base.resources.metal > base.upgradeMaxHealthCost){
-    base.upgradeMaxHealth()
-}
-
-if (base.resources.metal > base.upgradeHealRateCost){
-    base.upgradeHealRate()
-}
-
-Graphics.drawText(base.resources.toString() + ' Health: ' + base.health.toFixed(2),base.transform.position.subtract(new Vector2D(100,0)),12,"#FFFFFF")
-`
-
-export const ShipStart = 
-`ship.target = {}
-ship.state = "IDLE"
-ship.arr = []
-ship.shootCooldown = 10
-ship.shootTimer = 0
-console.log("Ship start!")
-`
-
-export const ShipUpdate = 
-`const speed = 2.5
+const speed = 2.5
 ship.shootTimer--
 
 function teammateHasTarget(target){
@@ -171,4 +127,3 @@ Graphics.drawText(ship.resources.toString(),ship.transform.position,10,"#FFFFFF"
 Graphics.drawText(ship.state,ship.transform.position.subtract(new Vector2D(0,1).multiply(-10)),8,"#FFFFFF")
 if (ship.target != undefined && ship.target.transform != undefined)
     Graphics.drawLine(ship.transform.position,ship.target.transform.position,"#00FF00")
-`
