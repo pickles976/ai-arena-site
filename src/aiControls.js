@@ -42,7 +42,16 @@ console.log("Ship start!")
 `
 
 export const ShipUpdate = 
-`const speed = 2.5
+`/*
+    Demo Ship AI code.
+    This code gets run once every frame to determine what actions your ships (RED) will take.
+    There is no documentation ATM, but try tweaking the code and seeing what changes!
+
+    You can modify other behavior scripts too. Click the dropdown at the top-left of the page
+    to see what other behaviors are available.
+*/
+
+const speed = 2.5
 ship.shootTimer--
 
 function teammateHasTarget(target){
